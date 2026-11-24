@@ -2,8 +2,21 @@
 <html lang="vi" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="AltiumLab" />
+  <meta name="theme-color" content="#0b0f17" />
   <title>AltiumLab — Học Thiết Kế PCB với Altium Designer</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
   <script>
@@ -48,7 +61,9 @@
       --cad-border: #cbd5e1;
       --cad-text: #0f172a;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    header { padding-top: env(safe-area-inset-top); }
+    body { padding-bottom: env(safe-area-inset-bottom); }
     html, body {
       background-color: var(--cad-bg);
       color: var(--cad-text);
@@ -3982,6 +3997,13 @@
       renderQuiz();
       if (window.lucide) lucide.createIcons();
     })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function () {});
+      });
+    }
   </script>
 </body>
 </html>
